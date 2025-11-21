@@ -1,0 +1,620 @@
+计算机程序设计基础（C++)
+实验报告
+
+
+专业班级：       软工2502班  
+学    号：       8209250221   
+姓    名：       陈铭君       
+
+
+实验报告成绩：
+实验实验一实验二实验三实验四实验五总评成绩
+批阅教师：
+
+
+实验一、实验环境与简单程序设计
+一、实验目的
+　　1、掌握集成开发环境，掌握C++程序的基本要素以及完整的C++程序开发过程。
+　　2、掌握基本数据类型、运算符和表达式的使用。理解隐式转换和强制转换，理解数据超过该数据类型
+　　表示范围时的溢出。掌握不同数据之间的混合算术运算中数据类型的转换。
+　　3、变量的定义与常量的使用。
+　　4、输入、输出的实现。
+　　5、编译信息的理解与错误的修改。
+　　6、简单程序的设计。
+二、实验内容
+　　熟悉C++编程环境，可以使用VS；对已经能熟练掌握C++开发环境的同学，可
+　　以跳过本部分内容）
+1.编辑输入下列程序，找出下面代码的错误并改正：
+#include<iostream>
+using namespace std;
+int main()
+{
+	Int i = k + 1;
+	cout << i++ << endl;
+	int i = 1;
+	cout << i++ << endl;
+	cout << "Welcome to C++"<<endl;
+	return 0;
+}
+2.求圆锥的体积：要求键盘输入圆锥底的半径、锥高，使用标识符常量定义圆周率。
+(1)创建一个控制台项目 
+(2)在文件中输入程序内容，存盘 
+(3)编译、连接、运行；观察结果
+3.通过下面程序验证你所使用系统上运行的C++编译器中每个基本数据类型的长度。
+#include<iostream>
+using namespace std;
+int main()
+{
+	cout << "char length:" << sizeof(char) << endl;
+	cout << "int length:" << sizeof(int) << endl;
+}
+4.观察下面程序的执行结果。
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int main()
+unsigned int testUnint=65534;//oxfffe
+cout << "output in unsigned int 1 type:"" << testUnint<< end;//<<oct;
+cout << "output in char type:!" << static_ cast<char>(testUnint)<< endl;
+cout << "output in short type:" << static_ cast<short>(testUnint)<< endl;//为什么结果为-2?:
+cout << "output in int type:" << static_ cast<int>. (testUnint)<< endl;
+cout << "output in double type:"<< static cast<double>(testUnint)<< endl;
+cout << "output in double type:" <<setprecision(4)<< static_ cast<double>(testUnint)<< endl;
+cout << "output in Hex unsigned int type:" <<hex<< testUnint<< endl; //16进制输出
+system("pause");
+return 0;
+自己编程测试一下将testUnint按8进制输出<<oct;je_将一个实数转换成int,观察结果。
+5.编程，输入华氏温度，将其转换为摄氏温度后输出（保留两位小数）。
+三、算法分析，程序结果
+1. #include<iostream>
+using namespace std;
+int main()
+{
+	int k = 2;
+	int i;
+	i= k + 1;
+	cout << i++ << endl;
+	i = 1;
+	cout << i++ << endl;
+	cout << "Welcome to C++!"<< endl;
+	return 0;
+}
+
+
+
+
+
+
+
+2. 
+#include<iostream>
+using namespace std;
+int main() {
+	const float pi = 3.14;
+	float r, h,v;
+	cout << "请输入半径" << endl;
+	cin >> r;
+	cout << "请输入高" << endl;
+	cin >> h;
+	v = pi * r * r * h / 3;
+	cout << "圆锥的体积是" << v << endl;
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+3.
+#include <iostream>                                 
+using namespace std;
+int main()
+{
+	cout << "char length:" << sizeof(char) << endl;
+	cout << "int length:" << sizeof(int) << endl;
+	cout << "short length:" << sizeof(short) << endl;
+	cout << "long length:" << sizeof(long) << endl;
+	cout << "float length:" << sizeof(float) << endl;
+	cout << "double length:" << sizeof(double) << endl;
+	cout << "long double length:" << sizeof(long double) << endl;
+	cout << "wchar_t length:" << sizeof(wchar_t) << endl;
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+4.
+#include <iostream>  
+#include <iomanip>                                  
+using namespace std;
+int main()
+{	float a;      
+	cin >> a;
+	cout << "output in int type：" << static_cast<int>(a) << endl;
+	cout << "下面是testUnint的测试" << endl;
+	unsigned int testUnint = 65534;//0xfffe   
+	cout << "output in unsigned int  type:" << testUnint << endl;//<<oct;         
+	cout << "output in char type:" << static_cast<char>(testUnint) << endl;
+	cout << "output in short type:" << static_cast<short>(testUnint) << endl;  //为什么结果为-2？
+	cout << "output in int type:" << static_cast<int> (testUnint) << endl;
+	cout << "output in double type:" << static_cast<double>(testUnint) << endl;
+	cout << "output in double type:" << setprecision(4) << static_cast<double>(testUnint) << endl;
+	cout << "output in Hex unsigned int type:" << hex << testUnint << endl; //16进制输出	system("pause");                                             
+	return 0;
+}
+
+
+5.
+//华氏度转化为摄氏度并保留两位小数
+#include<iostream>
+#include<iomanip>
+using namespace std;
+int main()
+{
+	float a, b;
+	cin >> a;
+	b = 5 * (a - 32) / 9;
+	cout <<fixed<< setprecision(2) << b << endl;
+	return 0;
+}
+
+四、遇到的问题与解决方法
+
+五、体会
+
+
+
+
+
+
+
+实验二、数据结构
+一、实验目的
+　　1、学习与掌握逻辑运算与逻辑表达式。 
+　　2、熟练掌握if、switch、while、do-while，for语句的语法结构与执行过程。
+　　3、掌握选择、循环程序的设计方法
+二、实验内容
+　　1、输入一个字符，如果为小写，转换为大写输出，否则，输出其后继字符的ASCII码值。
+　　2、输入x计算表达式的值：
+　　
+　　
+　　
+　　
+　　
+　　分别输入 0.2, 1, 5 , 0,观察输出结果。
+　　3、 输入三角形的三条边，求周长，并判断该三角形是否为等腰三角形（提示：要三边是否可以构成三角形）。
+　　4、 完成计算器程序，实现（+ - * / %）运算。考虑除数为 0 与运算符非法的情况。 
+　　5、输入一行字符，分别统计出其中英文字母、空格、数字字符和其它字符的个数。 
+　　提示：从键盘上读入一个字符给变量 c，判断 c 是属于哪种字符并计数，循环读入下个字符，直到回车换行字符'\n'为止。
+　　cin，scanf（）都不能读入空格以及‘\n’字符，查找资料解决输入这两个字符的方法。 
+　　（这个题训练大家自主学习能力以及如何获取新知识、探索解决未知问题的能力。） 
+　　6、编写一个程序：从键盘上输入两个正整数，求 a 和 b 的最大公约数与最小公倍数。 
+　　7、使用循环结构输出下列图形： 
+　　* 
+　　** 
+　　*** 
+　　**** 
+　　***** 
+　　8、从键盘输入 a，用迭代法求 a 的平方根 x= a 。求平方根的迭代公式为：
+
+
+
+　　要求精确到|xn+1 - xn|<10 -5。 
+提示：迭代法是把 xn代入迭代公式右边，计算出 xn+1来，然后把 xn+1 作为新的 xn ，计算出新的 xn+1，如此重复，直到|xn+1 - xn|<10 -5 时，xn+1 为所求的平方根。可以把 a 作为 xn 的初始值。 
+　　思考：（1）如果输入 a 为负，在运行时会出现什么情况? 修改程序使之能处理任何的 a 值。 
+　　　　(2）能否|xn+1 -xn|<10 -10或更小? 为什么? 请试一下。 
+　　9、苹果每个 0.8 元，第一天买 2 个，第二天开始，每天买前天的 2 倍，直到购买的苹果数不超过100的最大值，求每天平均花多少钱。
+三、算法分析，程序结果
+1. 
+#include<iostream>
+using namespace std;
+int main() {
+	char a;
+	cin >> a;
+	if (a >= 97 && a <= 122)
+		cout << static_cast<char>(a-32) << endl;
+	else
+		cout << (static_cast<int>(a))<< endl;
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. 
+#include<iostream>
+using namespace std;
+int main()
+{
+	float x;
+	cin >> x;
+	if (x > 0 && x < 1)
+		cout << 3 - x * 2 << endl;
+	else if (x >= 1 && x < 5)
+		cout << 2 / (4 * x) + 1 << endl;
+	else if (x >= 5 && x < 10)
+		cout << x * x << endl;
+	return 0;
+		
+}
+
+
+
+3. 
+//输入三角形的三条边，求周长，
+// 并判断该三角形是否为等腰三角形（提示：要三边是否可以构成三角形）
+#include<iostream>
+using namespace std;
+int main()
+{
+	float a, b, c;
+	cout << "请输入三角形的三边长" << endl;
+	cin >> a >> b >> c;
+	if (a + b > c && a + c > b && b + c > a)
+	{
+		cout << "三角形周长是" << a + b + c << endl;
+		if (a == b || b == c || a == c)
+		{
+			cout << "该三角形是等腰三角形" << endl;
+		}
+		else
+			cout << "该三角形不是等腰三角形" << endl;
+	}
+	else
+		cout << "该三边不能构成三角形" << endl;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4.
+//完成计算器程序，实现（+ - * / %）运算。
+//考虑除数为0与运算符非法的情况。
+#include<iostream>
+using namespace std;
+int main() {
+	char a;
+	float b, c;
+	cout << "请输入运算符号" << endl;
+	cin >> a;
+	cout << "请输入进行运算的两个数" << endl;
+	cin >> b >> c;
+	if (a == '/')
+	{
+		if (c == 0)
+			cout << "除数为0，无法计算" << endl;
+		else
+			cout << b / c << endl;
+	}
+	else
+	{
+		if (a == '+')
+			cout << b + c << endl;
+		else if (a == '-')
+			cout << b - c << endl;
+		else if (a == '*')
+			cout << b * c << endl;
+		else
+			cout << "运算符非法" << endl;
+	}
+	
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5.
+//输入一行字符，
+//分别统计出其中英文字母、空格、数字字符和其它字符的个数。
+#include<iostream>
+using namespace std;
+int main() {
+	char ch;
+	int a, b, c, d;
+	a = 0;
+	b = 0;
+	c = 0;
+	d = 0;
+	cout << "请输入一行字符" << endl;
+	ch = getchar();
+	while(ch!='\n')
+	{ 
+		if ((ch <= 'z' && ch >= 'a') || (ch <= 'Z' && ch >= 'A'))
+		{
+			a++;
+		}
+		else if (ch == ' ')
+		{
+			b++;
+		}
+		else if (ch >= '0' && ch <= '9')
+		{
+			c++;
+		}
+		else
+		{
+			d++;
+		}
+		ch = getchar();
+	}
+	cout << "英文字母字符个数为:" << a << endl;
+	cout << "空格字符个数为:" << b << endl;
+	cout << "数字字符个数为：" << c << endl;
+	cout << "其他字符个数为:" << d << endl;
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6.
+//编写一个程序：从键盘上输入两个正整数，
+// 求a和b的最大公约数与最小公倍数。
+#include<iostream>
+using namespace std;
+int main() {
+	int a, b,c,i;
+	cout << "请输入两个正整数" << endl;
+	cin >> a >> b;
+	c = a <= b ? a : b;
+	for (i = c; i >= 1; i--)
+	{
+		if (a % i == 0 && b % i == 0)
+		{
+			cout << a << "与" << b << "的最大公约数是" << i << endl;
+			break;
+		}
+	}
+	cout << a << "与" << b << "的最小公倍数是" << (a / i) * (b / i) * i << endl;
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7.
+#include<iostream>
+using namespace std;
+int main() {
+	int i,j,k;
+	for (i = 1; i <= 5; i++)
+	{
+		for (j = 5-i; j > 0; j--)
+		{
+			cout << " ";
+		}
+		for(k=1;k<=i;k++)
+		{
+			cout << "*";
+			if(k==i)
+			{
+				cout <<" \n";
+			}
+		}
+	}
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8. //迭代法求a的平方根
+#include<iostream>
+using namespace std;
+int main() {
+	float a,b,c,d;
+	cout << "请输入a"<<endl;
+	cin >> a;
+	d = a;
+	if (a < 0)
+	{
+		a = -a;
+	}
+	c= a;
+	while(1) 
+	{
+		b = c;
+		c = (b + a/b) / 2;
+		if (b - c <= 1e-5 && b - c >= -1e-5)
+			break;
+
+	}
+		cout << "根号"<<d<<"近似为" << c << endl;
+	
+		return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9. 
+//苹果问题
+#include<iostream>
+using namespace std;
+int main()
+{
+	int i = 2;
+	float num = 0;
+	float day = 0;
+	while (1)
+	{
+		if (num <= 100)
+		{
+			num = num + i;
+			day++;
+			i = i * 2;
+		}
+		else
+			break;
+	}
+	cout << "平均每天花" << 0.8 * num / day << "元钱" << endl;
+	return 0;
+}
+
+四、遇到的问题与解决方法
+
+五、体会
+
