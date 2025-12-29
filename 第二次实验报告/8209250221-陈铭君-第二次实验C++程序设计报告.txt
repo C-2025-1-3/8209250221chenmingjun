@@ -1,0 +1,901 @@
+计算机程序设计基础（C++)
+实验报告
+
+
+专业班级： 软工2502班           
+学    号： 8209250221            
+姓    名： 陈铭君            
+
+
+实验报告成绩：
+实验实验一实验二实验三实验四实验五总评成绩
+批阅教师：
+
+
+实验三  函数
+一、实验目的
+　　本实验主要培养、训练学生对函数的理解，要求：
+　　1. 掌握函数的定义、声明的方法；
+　　2. 掌握函数的编写要求；
+　　3. 掌握函数的调用方法；
+　　4. 掌握函数参数的传递方法；
+　　5. 掌握变量的作用域；
+　　6. 掌握多文件编程方法。
+二、实验内容与要求
+　　1、输入自然数m和n，
+　　　（1）求他们的最大公约数（或称最大公因数）。
+　　 要求输入、输出在主函数中进行，求公约数由函数实现。
+（2） 在函数中求最大公约数与最小公倍数。（提示：使用引用参数）
+
+2.   编写程序满足：声明一个函数，判断一个整数是否为素数，使用如下函数头：
+　　　bool is_prime(int num) ,如果num是素数函数返回true，否则返回false；
+　　　利用函数is_prime找出前200个素数，并按每行10个输出：
+　　????    2?????3??????5??????7????11????13????17????19????23????29
+
+　　3、编程实现摄氏温度到华氏温度的转换：
+　　　编写一个头文件，包含下面两个函数：
+　　　double celsius_to_fah(double cel)????//摄氏温度到华氏温度
+　　　double fahrenheit_to_cels(double fah) //华氏温度到摄氏温度
+　　　实现头文件，并编写测试程序，调用函数显示如下结果：
+　　　Celsius????Fahrenheit???|???Fahrenheit???????Celsius
+　　　40.0???????105.0????????|???120.0????????????48.89
+　　　39.0???????102.0????????|???110.0????????????43.33
+　　　……???????……????????|???……?????????????……
+　　　31.0????????87.8????????|???30.0?????????????-1.11
+　　　（测试程序为主模块，即main( )函数所在的CPP文件，头文件mytemperature.h只有函数声明；函数定义写在另一CPP文件mytemperature.cpp）
+　　
+　　4、创建名为mytriangle.h的头文件，包括：
+　　　bool is_valid(double side1,double side2,double side3)
+　　　double_area(double side1,double side2, double side3)
+　　　面积=sqrt(s(s-side1)(s-side2)(s-side3))
+　　　其中s=(side1+side2+side3)/2
+　　　写测试程序：读取三角形三边长，如输入合法，计算面积，否则输出错误信息。
+　　（测试程序为主模块，即main( )函数所在的CPP文件，头文件mytriangle.h只有函数声明；函数定义写在另一CPP文件mytriangle.cpp）
+　　3与4选一个完成
+　　
+　　5、猴子吃桃：猴子第一天摘若干桃子，当即吃了一半，还不过瘾，又吃了一个。第二天又将剩下的桃子吃掉一半，又多吃一个，以后每天如此，到第10天，发现只剩最后一个桃子，问，第一天猴子共摘多少桃子（用递归实现）。
+三、实验思考题
+　　1. 本实验中函数中返回的值为什么与函数类型一致？
+　　2. 本实验中主函数调用函数时采用的是何种传递方式？ 值传递?
+
+
+四、算法分析，程序结果
+
+
+
+
+
+
+
+1.（1）
+#include<iostream>
+using namespace std;
+//求最大公约数的函数
+int  gys(int a, int b)
+{
+	int t = (a >= b ? b : a);
+	for (int i = t; i >= 1; i--)
+	{
+		if (a % i == 0 && b % i == 0)
+			return i;
+	}
+}
+int main() {
+	int num1, num2;
+	cin >> num1 >> num2;
+	cout << "最大公约数为" << gys(num1, num2) << endl;
+system("pause");
+return 0;
+}
+
+
+
+
+
+1.（2）
+#include<iostream>
+using namespace std;
+void gysgbs(int& a, int& b) {
+	int c = a;
+	int d = b;
+	while (b != 0) {
+		int temp = b;
+		b = a % b;
+		a = temp;
+	}
+	b = c * d / a;
+}
+int main() {
+	int m, n;
+	cout << "请输入两个数字m,n:" << endl;
+	cin >> m >> n;
+	gysgbs(m, n);
+	cout << "m,n的最大公约数是" << m << endl;
+	cout << "m,n的最大公倍数是" << n << endl;
+	system("pause");
+	return 0;
+}
+
+
+
+
+2. //编写程序满足：声明一个函数，判断一个整数是否为素数，找出前200个素数
+#include<iostream>
+using namespace std;
+bool is_prime(int num) {
+	if (num < 2)
+		return false;
+	if (num == 2)
+		return true;
+	if (num % 2 == 0)
+		return false;
+	for (int i = 3; i * i <= num; i += 2) {
+		if (num % i == 0)
+			return false;
+	}
+	return true;
+}
+int main() {
+	int sum = 0;
+	int i = 2;
+	while (sum <200) {
+		if (is_prime(i) == true)
+		{
+			cout << i << "\t";
+			sum++;
+			if (sum % 10 == 0)
+				cout << "\n";
+		}
+		i++;
+		
+	}
+	return 0;
+}
+
+
+3.
+.h
+double celsius_to_fah(double cel);
+double fahrenheit_to_cels(double fah);
+
+.cpp
+//编程实现摄氏温度到华氏温度的转换：
+#include<iostream>
+#include<iomanip>
+using namespace std;
+#include"303area mytemperature.h"
+double celsius_to_fah(double cel) {
+	double fah;
+	fah = 9 * cel / 5 + 32;
+	return fah;
+}
+double fahrenheit_to_cels(double fah){
+	double cels;
+	cels = 5 * (fah - 32) / 9;
+	return cels;
+}
+
+int main() {
+	cout << setw(12) << "Celsius" << setw(15) << "Fahrenheit"<<setw(10)<<"|"<<setw(15) << "Fahrenhrit" << setw(12) << "Celsius" << endl;
+	double cels = 40.0;
+	double fah = 120.0;
+	for (int i = 0; i < 10; i++)
+	{
+		cout <<fixed<<setprecision(1)<< setw(12) << cels << setw(15) << celsius_to_fah(cels) << setw(10)<<"|" << setw(15) << fah << fixed << setprecision(2)<<setw(12) << fahrenheit_to_cels(fah) << endl;
+		cels--;
+		fah -= 10;
+	}
+	return 0;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4. 
+
+.h
+
+bool is_valid(double side1, double side2, double side3);
+double area(double side1, double side2, double side3);
+
+.cpp
+//写测试程序：读取三角形三边长，如输入合法，计算面积，否则输出错误信息。
+#include<iostream>
+using namespace std;
+#include"304.area mytriangle.h"
+bool is_valid(double side1, double side2, double side3) {
+	if (side1 + side2 > side3 && side1 + side3 > side1 && side2 + side3 > side1)
+		return true;
+	else
+		return false;
+}
+double area(double side1, double side2, double side3) {
+	double area;
+	double s = (side1 + side2 + side3) / 2;
+	area = sqrt(s * (s - side1) * (s - side2)*(s - side3));
+	return area;
+}
+int main() {
+	double a, b, c;
+	cout << "请输入三边的长度：" << endl;
+	cin >> a >> b >> c;
+	if (is_valid(a, b, c) == true)
+	{
+		cout << "该三边能构成三角形" << endl;
+		cout << "该三角形的面积是" << area(a, b, c) << endl;
+	}
+	else
+		cout << "该三边无法构成三角形，无法计算面积";
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5.
+#include<iostream>
+using namespace std;
+int main() {
+
+	int a = 1;
+	for (int i = 10; i > 1; i--)
+	{
+		a = (a + 1) * 2;
+	}
+	cout << "第一天猴子共摘了" << a << "个桃" << endl;
+	return 0;
+}
+
+五、遇到的问题与解决方法
+　　问题：
+　　1.忘记了如何编写头文件和间距控制
+　　2. 递归的时候栈溢出了，崩出来了，导致后面每一次运行的时候调试后出现的结果显示框会很快地自动退出。
+		
+	解决方法：查找课本和网络上查找资料，尝试尝试
+六、体会
+1.要多多练习，熟能生巧；
+2.要善于运用网络资源和课本资源补缺补漏同时学习新知；
+
+
+实验四   数组与指针
+
+【实验目的】
+　　1、进一步加深对数组的理解，掌握数组的定义方法；
+　　2、掌握数组的处理方法、数组作为函数参数的使用方法，以及搜索与排序的应用。
+　　3、掌握指针的概念、指针变量定义格式以及指针的运算；
+　　4、掌握指针与数组、函数的关系；
+　　5、理解内存动态分配的含义、熟练掌握内存动态分配方法；
+　　6、掌握递归函数的定义方法。
+
+【实验内容与步骤】
+　　（一）数组
+　　1、打印不同的数：
+　　编写一个程序，读入10个数，输出其中不同的数（即如果一个数出现多次，只打印一次）。
+　　提示：读入的数如果是一个新的值，则将其存入一个数组。否则，将其丢弃。输入完毕后，数组中保存的就是不同的数。
+　　下面是一个运行样例：
+　　
+　　2、起泡排序：
+　　利用起泡排序算法编写一个排序函数。起泡排序算法分若干趟对数组进行处理。每趟处理中，对相邻元素进行比较。若为降序，则交换；否则，保持原顺序。此技术被称为起泡排序（bubble sort）或下沉排序（sinking sort），因为较小的值逐渐地“冒泡”到上部，而较大值逐渐下沉到底部。
+　　算法可描述如下：
+　　bool changed = true;
+　　do
+　　{
+　　　changed = false;
+　　　for (int j = 0; j < listSize – 1; j++)
+　　	if (list[j] > list[j+1])
+　　	{
+　　	  swap list[j] with list[j+1];
+　　	  changed = true;
+　　	}
+　　} while (changed);
+　　很明显，循环结束后，列表变为升序。容易证明do循环最多执行listSize – 1次。
+　　编写测试程序，读入一个含有10个双精度数字的数组，调用函数并显示排列后的数字。
+　　
+　　3、游戏：存物柜问题：
+　　一个学校有100个存物柜，100个学生。开学第一天所有存物柜都是关闭的。第一个学生（记为S1）来到学校后，打开所有的存物柜。第二个学生S2，从第二个存物柜（记为L2）开始，每隔两个存物柜，将它们关闭。第三个学生S3从第三个存物柜L3开始，每隔三个，将它们的状态改变（开着的关上，关着的打开）。学生S4，从L4开始，每隔四个改变它们的状态。学生S5，从L5开始，每隔五个改变状态。依此类推，直至学生S100改变L100的状态。
+　　当所有学生完成这个过程，那些存物柜是开着的？编写一个程序求解此问题，显示所有开着的柜子号码，号码之间用一个空格隔开。
+　　提示：使用一个100个布尔型元素的数组，每个元素代表存物柜是开（true）或关（false）。最初所有的储物柜都是关闭的。
+　　
+　　4、合并两个排列好的数组：
+　　编写如下函数，合并两个排列好的数组，形成一个新的排列好的数组。
+　　void merge(const int list1[], int size1, const int list2[], int size2, int list3[])
+　　使用size1+size2次比较实现函数。编写测试程序，提示用户输入两个排列好的数组，并显示合并以后的数组。下面是一个运行样例。注意，输入数据的第一个数字是数组的元素数，而不是数组的一部分。假定数组大小不超过80。
+　　
+　　
+　　5、检验子串：
+　　编写如下函数，检验C字符串s1是否是C字符串s2的子串。如果匹配，返回s1在s2中的下标，否则返回–1。
+　　int indexOf(const char s1[], const char s2[])
+　　编写测试程序，读入两个C字符串，检验C字符串s1是否是C字符串s2的子串。下面是程序的运行样例：
+　　
+　　
+　　6、字符串中每个字母出现的次数：
+　　请使用如下函数头编写函数，数出字符串中每个字母出现的次数。
+　　void count(const char s[], int counts[])
+　　counts是一个有26个元素的整数数组。const[0]，const[1]，…，const[25]分别记录a，b，…，z出现的次数。字母不分大小写，例如字母A和字母a都被看作a。
+　　编写测试程序，读入字符串并调用count函数，显示非零的次数。下面是程序的一个运行样例：
+　　
+　　
+　　（二）指针
+　　1、上机验证下列程序的运行结果（有错误的话自己补充完善）
+　　 (1) void main() 
+　　    ｛
+　　       int i,j,*pi,*pj;     //此处的*表示定义指针变量，而非间接运算符
+　　       pi=&i;
+　　       pj=&j;
+　　       i=5;j=7;
+　　       cout<<i<<’\t’<<j<<’\t’<<pi<<’\t’<<pj;
+　　       cout<<&i<<’\t’<<*&i<<’\t’<<&j<<’\t’<<*&j;
+　　    }
+　　运行结果：
+　　上述结果中，pi与&i,pj与&j是地址值，随编译程序而变化，不确定。
+　　 (2) int main()   //C语言程序，要了解
+　　    {
+　　       int a[]={1,2,3};
+　　       int *p,i;
+　　       p=a;    //将数组a首地址送给p
+　　       for (i=0;i<3;i++)
+　　       printf("%d,%d,%d,%d\n",a[i],p[i],*(p+i),*(a+i));  //与cout功能差不多
+　　    }
+　　运行结果：
+　　1,1,1,1
+　　2,2,2,2
+　　3,3,3,3
+　　通过这两道题目，希望学生掌握数组元素与指向数组的指针的不同。
+　　a[i]表示数组中下标为i的元素。
+　　a[i]←p[i]←*(p+i)←*(a+i)
+　　a是数组名，表示数组首地址，(p+i)表示数组中第i个元素的地址，*(p+i) 相当于a[i]。
+　　(3)通过如下的问题理解递归函数的定义与调用（递归未讲，可以后做）
+　　#include<iostream>                    
+　　using namespace std;                         //#include “stdio.h”
+　　 void f(char *st,int i) 
+     {
+　　    st[i]=’\0’;
+　　    cout<<st;   // printf(“%s\n”,st);
+　　    if (i>1) f(st,i-1);
+     }
+　　void main()
+     {
+　　    char st[]=”abcd”;
+　　    f(st,4);
+     }
+　　 补充完整，运行时输出为
+　　abcd
+　　abc
+　　ab
+　　a________
+　　(4)下面程序的主函数中能保证p[0]输出1，p[1]输出2吗？如何修改以保证之（提示：在函数f中使用new生成动态数组；在main中用delete释放。）
+　　#include<iostream>
+　　using namespace std;
+　　int *f()
+　　{
+　　　 int list[]={1,2,3,4};
+　　   return list;
+　　}
+　　void main()
+　　{
+　　　int *p=f();
+　　  cout<<p[0]<<endl;
+　　  cout<<p[1]<<endl;
+　　}
+　　2、程序设计
+　　(1)编写函数检查字符串s1是否为字符串s2的子串，若是，返回第一次匹配的下标，否则返回-1。在主程序中输入字符串s1与s2，调用函数实现。
+　　函数原型：int indexof(const char *s1,const char *s2);
+　　
+　　(2)编写一个函数将以字符串形式表示的一个16进制数转换为10进制数，并在主函数中测试。函数原型 int parseHex(const char *const hexString);
+　　如：调用函数 parseHex(“A5”);返回165
+　　
+　　(3) 主程序中建立一动态数组（使用new），数组元素及元素个数由键盘输入，动态调试观察指针及指针指向的内容；设计一个函数对数组由小到大排序；主程序中用指针方式输出数组元素；最后释放数组内存（delete）。
+　　
+【完成实验报告】
+实验报告只要求写程序设计部分
+三、算法分析，程序结果
+
+1. #include<iostream>
+using namespace std;
+int main() {
+	int a[10];
+	int n;
+	int js = 0;	//看有没有跟前面的重复,
+	cout << "Enter ten numbers:";
+	cin >> a[0];
+	int yy = 1;//表示已经有的占有的数组的个数
+	for (int i = 1; i < 10; i++)
+	{
+		cin >> n;
+		for (int j = 0; j <yy;j++)
+		{
+			if (n != a[j])
+				js++;
+		}
+		if (js == yy) {
+			a[yy] = n;
+			yy++;
+		}
+		js = 0;
+	}
+	cout << "The distinct numbers are:";
+	for (int k = 0; k < yy; k++)
+		cout << a[k] << " ";
+	system("pause");
+	return 0;
+}
+
+
+
+
+2. #include<iostream>
+using namespace std;
+int main() {
+	double a[10];
+	float b;
+	for (int i = 0; i < 10; i++)
+	{
+		cin >> a[i];
+	}
+	for (int i = 0; i < 9; i++)
+	{
+		for (int j = 0; j < 9 - i; j++)
+		{
+			if (a[j] > a[j + 1])
+			{
+				b = a[j +1];
+				a[j+1] = a[j];
+				a[j] = b;
+			}
+		}
+	}
+	for (int i = 0; i < 10; i++)
+	{
+		cout << a[i] << " ";
+	}
+	system("pause");
+	return 0;
+}
+
+
+
+3. 
+#include<iostream>
+using namespace std;
+int main() {
+	bool a[100] = { 0 };
+
+	for (int i = 0; i <100; i++)
+	{
+		for (int j = i; j < 100; j=j+i+1)
+		{
+			if (a[j] == false)
+				a[j] = true;
+			else
+				a[j] = false;
+		}
+	}
+	for (int i = 0; i < 100; i++)
+	{
+		if (a[i] == true)
+			cout << i+1 << " ";
+	}
+	system("pause");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4. 
+#include<iostream>
+#include<vector>
+using namespace std;
+//比较两个数组中的元素，将较小的放入list3
+void merge(const int list1[], int size1, const int list2[], int size2, int list3[])
+{
+	int i = 0, j = 0, k = 0;
+	while (i <=size1 || j <= size2) {
+		if (i == size1)
+		{
+			while (j < size2)
+			{
+				list3[k] = list2[j];
+				k++;
+				j++;
+			}
+		}
+		else if (j == size2)
+		{
+			while (i < size1)
+			{
+				list3[k] = list1[i];
+				k++;
+				i++;
+			}
+		}
+		if (list1[i] <= list2[j]) {
+			list3[k] = list1[i];
+			k++;
+			i++;
+			
+		}
+		else {
+			list3[k] = list2[j];
+			k++;
+			j++;
+		}
+	}
+}
+//读取用户输入的数组
+void readArray(int arr[], int& size) {
+	cin >> size;
+	for (int i = 0; i < size; i++)
+	{
+		cin >> arr[i];
+	}
+}
+//打印数组
+void printArray(const int arr[], int size) {
+	for (int i = 0; i < size; i++)
+	{
+		cout << arr[i] << " ";
+	}
+}
+
+int main() {
+	const int MAX_SIZE = 80;
+	int list1[MAX_SIZE], list2[MAX_SIZE], list3[MAX_SIZE * 2] = { 0 };
+	int size1,size2;
+	cout << "Enter list1:";
+	readArray(list1, size1);
+	cout << "Enter list2:";
+	readArray(list2, size2);
+	merge(list1, size1, list2, size2, list3);
+	cout << "The merged list is ";
+	printArray(list3, size1 + size2);
+	cout << endl;
+	system("pause");
+	return 0;
+}
+
+
+
+5.
+#include<iostream>
+using namespace std;
+int main() {
+	char s1[100];
+	char s2[100];
+	int x=0;
+	cout << "Enter the frist string:";
+	cin.getline(s2, 100);
+	cout << "Enter the second string:";
+	cin.getline(s1, 100);
+	for (int i = 0; i <=strlen(s1)-strlen(s2); i++)
+	{
+		if (s1[i] == s2[0])
+		{
+			x = 0;
+			for (int j = 0; j < strlen(s2); j++)
+			{
+				if (s1[i + j] == s2[j])
+					x++;
+			}
+			if (x == strlen(s2))
+			{
+				cout << "indexOf"<<"(" << s1 << "," << s2 << ") is " << i;
+				break;
+			}
+		}
+	}
+	if (x != strlen(s2))
+		cout<< "indexOf"<<"(" << s1 << "," << s2 <<")" << "is" << "-1";
+	system("pause");
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6.
+#include<iostream>
+using namespace std;
+void count(const char s[], int counts[]) {
+	char c;
+	int x;
+	char d;
+	for (int i = 0; i < strlen(s); i++)
+	{
+		char c = s[i];
+		if (c >= 'A' && c <= 'Z')
+		{
+			c = tolower(c);
+		}
+		if (c >= 'a' && c <= 'z')
+		{
+			x = c - 'a';
+			counts[x]++;
+		}
+	}
+	for (int j = 0; j < 26; j++)
+	{
+		if (counts[j] != 0)
+		{
+			char d = char('a' + j);
+			cout << d << " : " << counts[j] << " times" << endl;
+		}
+	}
+}
+int main() {
+	char s[80];
+	int counts[26] = { 0 };
+	cout << "Enter a string:";
+	cin.getline(s, 80);
+	count(s, counts);
+	system("pause");
+	return 0;
+}
+
+
+实验4 指针1.(1)
+#include<iostream>
+using namespace std;
+int main(){
+    int i, j, * pi, * pj;     //此处的*表示定义指针变量，而非间接运算符
+    pi = &i;
+    pj = &j;
+    i = 5; j = 7;
+    cout << i << '\t' << j << '\t' << pi << '\t' << pj << endl;
+    cout << &i <<'\t' << *&i << '\t' << &j << '\t' << *&j << endl;
+    system("pause");
+    return 0;
+　　}
+　　
+
+实验4 指针1.(1)
+
+#include<iostream>
+using namespace std;
+int* f()
+{
+	int* list= new int[4];
+	list[0] = 1;
+	list[1] = 2;
+	list[2] = 3;
+	list[3] = 4;
+	return list;
+}
+void main()
+{
+	int* p = f();
+	cout << p[0] << endl;
+	cout << p[1] << endl;
+	delete[]p;
+	system("pause");
+}
+
+
+
+
+
+
+
+
+
+实验4 指针2.(1)
+
+#include<iostream>
+using namespace std;
+int indexof(const char* s1, const char* s2) {
+	if (s1[0] == '\0') {
+		return 0;
+	}
+	int len1 = strlen(s1);
+	int len2 = strlen(s2);
+	if (len1 > len2) {
+		return -1;
+	}
+
+	for (int i = 0; i <= len2 - len1; i++)
+	{
+		bool found = true;
+		for (int j = 0; j < len1; j++)
+		{
+			if (s1[j] != s2[i + j])
+			{
+				found = false;
+				break;
+			}
+		}
+		if (found) {
+			return i;
+		}
+	}
+	return -1;
+}
+int main() {
+	char s1[100] ;
+	char s2[100];
+	cout << "请输入字符串s1：" << endl;
+	cin.getline(s1, sizeof(s1));
+	cout << "请输入字符串s2：" << endl;
+	cin.getline(s2, sizeof(s2));
+	int result = indexof(s1, s2);
+	if (result != -1)
+	{
+		cout << "'" << s1 << "'在'" << s2 << "'中第一次出现的位置是：" << result<< endl;
+	}
+	else {
+		cout << "'" << s1 << "'不是'" << s2 << "'的子串" << endl;
+	}
+	system("pause");
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+实验4指针2.(2)
+
+#include<iostream>
+#include<cmath>
+using namespace std;
+int parseHex(const char* const hexString) {
+	int len = strlen(hexString);
+	int sum = 0;
+	for (int i = 0; i < len; i++)
+	{
+		if (hexString[i] <= '9' && hexString[i] >= '0')
+		{
+			int x = hexString[i] - 48;
+			sum = sum +x* pow(16, len-i-1);
+	
+		}
+		if (hexString[i] <= 'f' && hexString[i] >= 'a')
+		{
+			int y = hexString[i] - 87;
+			sum = sum + y * pow(16, len - i - 1);
+		}
+		if (hexString[i] <= 'F' && hexString[i] >= 'A')
+		{
+			int l = hexString[i] - 55;
+			sum = sum + l*pow(16, len - i - 1);
+		}
+	}
+	return sum;
+}
+int main() {
+	char s1[100];
+	cout << "请输入一个16进制的字符串：" << endl;
+	cin.getline(s1, sizeof(s1));
+	int result = parseHex(s1);
+	cout << "转化为十进制后为：" << result << endl;
+	system("pause");
+	return 0;
+
+}
+
+
+实验4指针2.(3)
+#include<iostream>
+using namespace std;
+void paixu(int*a,int n) {
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = 0; j < n - i - 1; j++)
+		{
+			if (a[j] > a[j + 1])
+			{
+				int temp = a[j + 1];
+				a[j + 1] = a[j];
+				a[j] = temp;
+			}
+		}
+	}
+}
+int main() {
+	int n;
+	cout << "请输入元素个数:" << endl;
+	cin >> n;
+	int* a = new int[n];
+	cout << "请输入元素:" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cin >> a[i];
+	}
+	paixu(a,n);
+	for (int i = 0; i < n; i++)
+	{
+		cout << a[i] << " ";
+	}
+	delete[]a;
+	system("pause");
+	return 0;
+}
+
+四、遇到的问题与解决方法
+	问题：
+1.不会输入一个未知长度的数组或字符串；
+2.不明白一些代码的生命周期；
+3.不记得new和delete的用法；
+4.有一些看不明白的报错。
+解决方法：
+1.上网查找资料；	
+2.问AI；
+3.自我摸索。
+五、体会
+1.学会了用已有的函数来简化过程；
+2.通过自学，学会了一些书本上没有的知识；
+3.通过练习，更深刻地理解了动态内存分布和局部变量之类的知识。
